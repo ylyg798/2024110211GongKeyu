@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">gongkeyu2024110211</string>
+    <string name="app_name">龚柯予2024110211</string>
+
+    <!-- 区1：动态添加 TextView -->
+    <string name="section1_title">区1：代码动态生成TextView</string>
+    <string name="btn_add_text">点击添加一条TextView</string>
+    <string name="dynamic_text">动态生成的第%1$d条TextView</string>
+
+    <!-- 区2：MVC ProgramAdviser -->
+    <string name="section2_title">区2：MVC 程序顾问(ProgramAdviser)</string>
+    <string name="btn_query">点击查询建议</string>
+    <string name="advise_hint">尚未查询，点击上方按钮获取编程建议</string>
+    <string name="advise_1">变量命名尽量见名知意，避免a、b、c这类无意义命名</string>
+    <string name="advise_2">代码要做好注释，方便日后自己和他人阅读</string>
+    <string name="advise_3">函数功能尽量单一，不要写几百行的大函数</string>
+    <string name="advise_4">注意内存泄漏问题，及时注销广播与回调</string>
+    <string name="advise_5">提交代码前先跑一遍格式化，保持团队风格统一</string>
 </resources>

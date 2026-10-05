@@ -1,77 +1,46 @@
 package cn.edu.sicnu.cs.stu.gongkeyu.helloworld2024110211
 
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import cn.edu.sicnu.cs.stu.gongkeyu.helloworld2024110211.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private val langList = listOf(
-        Triple("你好，世界！", R.drawable.cn, "切换语言"),
-        Triple("Hello World!", R.drawable.us, "Switch Language"),
-        Triple("Ciao Mondo!", R.drawable.it, "Cambia lingua")
-    )
-    private var currentIndex = 0
+    // ViewBinding 生成的绑定类，直接拿控件实例，告别 findViewById
+    private lateinit var binding: ActivityMainBinding
 
-    // 这些变量写在这里！onCreate外面，类里面！
-    private lateinit var imageView: ImageView
-    private lateinit var textView: TextView
-    private lateinit var btnSwitch: Button
+    // Model 层：建议数据源（MVC 中的 M）
+    private lateinit var model: ProgramAdviserModel
+
+    // 区1：记录已动态添加的 TextView 条数
+    private var dynamicCount = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val rootLayout = LinearLayout(this).apply {
-            orientation = LinearLayout.VERTICAL
-            setPadding(60, 120, 60, 60)
-            gravity = android.view.Gravity.CENTER
-        }
+        // ① 用 ViewBinding 加载布局
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        imageView = ImageView(this).apply {
-            layoutParams = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-            ).apply {
-                bottomMargin = 40
+        // ② 初始化 Model
+        model = ProgramAdviserModel()
+
+        // ③ 区1：点击按钮，用代码动态 new 一个 TextView 塞进 dynamicContainer
+        binding.btnAddText.setOnClickListener {
+            dynamicCount++
+            val tv = TextView(this).apply {
+                text = getString(R.string.dynamic_text, dynamicCount)
+                textSize = 16f
+                setPadding(24, 24, 24, 24)
             }
+            binding.dynamicContainer.addView(tv)
         }
 
-        textView = TextView(this).apply {
-            textSize = 24f
-            layoutParams = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-            ).apply {
-                bottomMargin = 60
-            }
+        // ④ 区2：点击查询按钮 → 从 Model 拿建议 → 刷新到 View
+        binding.btnQuery.setOnClickListener {
+            val adviceResId = model.nextAdvice()
+            binding.tvAdvise.setText(adviceResId)
         }
-
-        btnSwitch = Button(this).apply {
-            layoutParams = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-            )
-            setOnClickListener {
-                currentIndex = (currentIndex + 1) % langList.size
-                updateUI()
-            }
-        }
-
-        rootLayout.addView(imageView)
-        rootLayout.addView(textView)
-        rootLayout.addView(btnSwitch)
-
-        setContentView(rootLayout)
-        updateUI()
-    }
-
-    private fun updateUI() {
-        val (showText, imgId, btnText) = langList[currentIndex]
-        textView.text = showText
-        imageView.setImageResource(imgId)
-        btnSwitch.text = btnText
     }
 }
