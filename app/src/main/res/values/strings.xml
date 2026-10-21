@@ -1,18 +1,40 @@
 <resources>
     <string name="app_name">龚柯予2024110211</string>
 
-    <!-- 区1：动态添加 TextView -->
-    <string name="section1_title">区1：代码动态生成TextView</string>
-    <string name="btn_add_text">点击添加一条TextView</string>
-    <string name="dynamic_text">动态生成的第%1$d条TextView</string>
+    <!-- 作业三：多Activity 主界面按钮 -->
+    <string name="btn_to_first">启动第一个Activity（正向传参）</string>
+    <string name="btn_to_second">启动第二个Activity（返回数据）</string>
+    <string name="btn_to_third">启动第三个Activity（相机拍照）</string>
+    <string name="btn_to_fourth">启动第四个Activity（秒表）</string>
+    <string name="return_result_empty">尚未从第二个Activity返回结果</string>
+    <string name="return_result_hint">从第二个Activity返回的结果：</string>
 
-    <!-- 区2：MVC ProgramAdviser -->
-    <string name="section2_title">区2：MVC 程序顾问(ProgramAdviser)</string>
-    <string name="btn_query">点击查询建议</string>
-    <string name="advise_hint">尚未查询，点击上方按钮获取编程建议</string>
-    <string name="advise_1">变量命名尽量见名知意，避免a、b、c这类无意义命名</string>
-    <string name="advise_2">代码要做好注释，方便日后自己和他人阅读</string>
-    <string name="advise_3">函数功能尽量单一，不要写几百行的大函数</string>
-    <string name="advise_4">注意内存泄漏问题，及时注销广播与回调</string>
-    <string name="advise_5">提交代码前先跑一遍格式化，保持团队风格统一</string>
+    <!-- 第一个Activity：接收正向传参 -->
+    <string name="first_title">第一个Activity（接收参数）</string>
+    <string name="first_received_label">接收到的参数：</string>
+    <string name="first_back">返回MainActivity</string>
+    <string name="default_send_data">你好，这是从MainActivity通过Intent正向传递过来的数据！</string>
+
+    <!-- 第二个Activity：输入并返回数据 -->
+    <string name="second_title">第二个Activity（输入并返回）</string>
+    <string name="second_hint">请输入要返回给MainActivity的内容</string>
+    <string name="second_confirm">确定返回</string>
+    <string name="second_cancel">取消</string>
+    <string name="second_empty_warning">输入内容不能为空</string>
+
+    <!-- 第三个Activity：隐式Intent调用相机拍照 -->
+    <string name="third_title">第三个Activity（相机拍照）</string>
+    <string name="third_take_photo">拍照</string>
+    <string name="third_no_photo">拍照后的照片将显示在这里</string>
+    <string name="third_saved_to">照片已保存到：</string>
+    <string name="third_no_camera">设备上没有可用的相机应用，已用模拟照片代替</string>
+    <string name="third_permission_denied">需要相机权限才能拍照</string>
+
+    <!-- 第四个Activity：秒表 -->
+    <string name="fourth_title">第四个Activity（秒表）</string>
+    <string name="fourth_start">开始</string>
+    <string name="fourth_pause">暂停</string>
+    <string name="fourth_reset">重置</string>
+    <string name="fourth_initial_time">00:00:00</string>
+    <string name="fourth_time_format">%1$02d:%2$02d:%3$02d</string>
 </resources>
