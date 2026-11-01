@@ -5,39 +5,75 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <Button
-        android:id="@+id/btn_to_first"
+    <!-- 标题 -->
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="@string/btn_to_first" />
+        android:gravity="center"
+        android:text="@string/main_title"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:paddingBottom="12dp" />
 
-    <Button
-        android:id="@+id/btn_to_second"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="@string/btn_to_second" />
+    <!-- 头像占位 -->
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#CCCCCC"
+        android:contentDescription="@string/main_title" />
 
-    <Button
-        android:id="@+id/btn_to_third"
+    <!-- 玩家信息展示 -->
+    <TextView
+        android:id="@+id/tv_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="@string/btn_to_third" />
-
-    <Button
-        android:id="@+id/btn_to_fourth"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="@string/btn_to_fourth" />
+        android:paddingTop="16dp"
+        android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/tv_return_result"
+        android:id="@+id/tv_gender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="12dp"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tv_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tv_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tv_hobby"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tv_highscore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:text="@string/return_result_empty" />
+        android:textStyle="bold"
+        android:paddingBottom="16dp" />
+
+    <!-- 两个按钮 -->
+    <Button
+        android:id="@+id/btn_edit_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/btn_edit_info" />
+
+    <Button
+        android:id="@+id/btn_play_game"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_play_game" />
 </LinearLayout>

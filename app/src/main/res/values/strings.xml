@@ -1,40 +1,36 @@
 <resources>
     <string name="app_name">龚柯予2024110211</string>
 
-    <!-- 作业三：多Activity 主界面按钮 -->
-    <string name="btn_to_first">启动第一个Activity（正向传参）</string>
-    <string name="btn_to_second">启动第二个Activity（返回数据）</string>
-    <string name="btn_to_third">启动第三个Activity（相机拍照）</string>
-    <string name="btn_to_fourth">启动第四个Activity（秒表）</string>
-    <string name="return_result_empty">尚未从第二个Activity返回结果</string>
-    <string name="return_result_hint">从第二个Activity返回的结果：</string>
+    <!-- 主界面 -->
+    <string name="main_title">姓名+学号</string>
+    <string name="label_name">姓名：</string>
+    <string name="label_gender">性别：</string>
+    <string name="label_phone">电话：</string>
+    <string name="label_email">邮件地址：</string>
+    <string name="label_hobby">爱好：</string>
+    <string name="label_highscore">游戏最高分：</string>
+    <string name="btn_edit_info">修改个人信息</string>
+    <string name="btn_play_game">翻转游戏</string>
 
-    <!-- 第一个Activity：接收正向传参 -->
-    <string name="first_title">第一个Activity（接收参数）</string>
-    <string name="first_received_label">接收到的参数：</string>
-    <string name="first_back">返回MainActivity</string>
-    <string name="default_send_data">你好，这是从MainActivity通过Intent正向传递过来的数据！</string>
+    <!-- 信息修改界面 -->
+    <string name="info_title">信息修改</string>
+    <string name="hint_name">姓名</string>
+    <string name="hint_student_id">学号</string>
+    <string name="hint_phone">电话号码</string>
+    <string name="hint_email">电子邮件地址</string>
+    <string name="gender_male">男</string>
+    <string name="gender_female">女</string>
+    <string name="hobby_travel">旅游</string>
+    <string name="hobby_reading">阅读</string>
+    <string name="hobby_game">游戏</string>
+    <string name="hobby_shopping">购物</string>
+    <string name="btn_save">保存</string>
+    <string name="btn_back">返回</string>
 
-    <!-- 第二个Activity：输入并返回数据 -->
-    <string name="second_title">第二个Activity（输入并返回）</string>
-    <string name="second_hint">请输入要返回给MainActivity的内容</string>
-    <string name="second_confirm">确定返回</string>
-    <string name="second_cancel">取消</string>
-    <string name="second_empty_warning">输入内容不能为空</string>
-
-    <!-- 第三个Activity：隐式Intent调用相机拍照 -->
-    <string name="third_title">第三个Activity（相机拍照）</string>
-    <string name="third_take_photo">拍照</string>
-    <string name="third_no_photo">拍照后的照片将显示在这里</string>
-    <string name="third_saved_to">照片已保存到：</string>
-    <string name="third_no_camera">设备上没有可用的相机应用，已用模拟照片代替</string>
-    <string name="third_permission_denied">需要相机权限才能拍照</string>
-
-    <!-- 第四个Activity：秒表 -->
-    <string name="fourth_title">第四个Activity（秒表）</string>
-    <string name="fourth_start">开始</string>
-    <string name="fourth_pause">暂停</string>
-    <string name="fourth_reset">重置</string>
-    <string name="fourth_initial_time">00:00:00</string>
-    <string name="fourth_time_format">%1$02d:%2$02d:%3$02d</string>
+    <!-- 翻牌游戏界面 -->
+    <string name="game_title">翻牌游戏</string>
+    <string name="score_label">分数: %1$d</string>
+    <string name="btn_restart">重新开始</string>
+    <string name="btn_exit">退出</string>
+    <string name="save_success">信息已保存</string>
 </resources>

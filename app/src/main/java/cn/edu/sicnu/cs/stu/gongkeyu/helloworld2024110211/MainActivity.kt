@@ -1,9 +1,7 @@
 package cn.edu.sicnu.cs.stu.gongkeyu.helloworld2024110211
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import cn.edu.sicnu.cs.stu.gongkeyu.helloworld2024110211.databinding.ActivityMainBinding
 
@@ -11,41 +9,36 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    // 注册第二个Activity的返回回调：接收二级Activity回传的数据
-    private val secondLauncher = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
-    ) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            val data = result.data?.getStringExtra("return_data")
-            binding.tvReturnResult.text = getString(R.string.return_result_hint) + data
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 第1个按钮：正向传参启动第一个二级Activity
-        binding.btnToFirst.setOnClickListener {
-            val intent = Intent(this, FirstActivity::class.java)
-            intent.putExtra("extra_data", getString(R.string.default_send_data))
-            startActivity(intent)
+        refreshInfo()
+
+        // 修改个人信息
+        binding.btnEditInfo.setOnClickListener {
+            startActivity(Intent(this, PersonalInfoActivity::class.java))
         }
 
-        // 第2个按钮：启动第二个二级Activity并等待返回结果
-        binding.btnToSecond.setOnClickListener {
-            secondLauncher.launch(Intent(this, SecondActivity::class.java))
+        // 进入翻牌游戏
+        binding.btnPlayGame.setOnClickListener {
+            startActivity(Intent(this, CardGameActivity::class.java))
         }
+    }
 
-        // 第3个按钮：启动第三个二级Activity（相机拍照）
-        binding.btnToThird.setOnClickListener {
-            startActivity(Intent(this, ThirdActivity::class.java))
-        }
+    override fun onResume() {
+        super.onResume()
+        // 从信息修改页返回后刷新显示
+        refreshInfo()
+    }
 
-        // 第4个按钮：启动第四个二级Activity（秒表）
-        binding.btnToFourth.setOnClickListener {
-            startActivity(Intent(this, FourthActivity::class.java))
-        }
+    private fun refreshInfo() {
+        binding.tvName.text = getString(R.string.label_name) + Player.name
+        binding.tvGender.text = getString(R.string.label_gender) + Player.gender
+        binding.tvPhone.text = getString(R.string.label_phone) + Player.phone
+        binding.tvEmail.text = getString(R.string.label_email) + Player.email
+        binding.tvHobby.text = getString(R.string.label_hobby) + Player.hobbies
+        binding.tvHighscore.text = getString(R.string.label_highscore) + Player.highScore
     }
 }
