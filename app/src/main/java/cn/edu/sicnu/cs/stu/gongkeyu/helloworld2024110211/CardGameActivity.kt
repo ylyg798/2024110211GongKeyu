@@ -26,17 +26,27 @@ class CardGameActivity : AppCompatActivity() {
 
     private fun startNewGame() {
         game = CardMatchingGame(cardCount)
-        // 竖屏4列，横屏6列，都是24张牌
-        val spanCount = if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) 6 else 4
-        // 明确设置垂直滚动方向
-        val layoutManager = GridLayoutManager(this, spanCount, GridLayoutManager.VERTICAL, false)
+        updateLayoutManager()
         adapter = CardAdapter(getCards()) { position ->
             game.chooseCardAtIndex(position)
             updateUI()
         }
-        binding.recyclerCards.layoutManager = layoutManager
         binding.recyclerCards.adapter = adapter
         updateUI()
+    }
+
+    // 根据屏幕方向更新列数
+    private fun updateLayoutManager() {
+        val spanCount = if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) 6 else 4
+        val layoutManager = GridLayoutManager(this, spanCount, GridLayoutManager.VERTICAL, false)
+        binding.recyclerCards.layoutManager = layoutManager
+    }
+
+    // 屏幕旋转时不重建Activity，只更新列数，游戏状态保持
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        updateLayoutManager()
+        adapter.notifyDataSetChanged()
     }
 
     private fun getCards(): List<Card> {
