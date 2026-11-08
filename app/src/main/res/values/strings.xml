@@ -12,6 +12,10 @@
     <string name="btn_edit_info">修改个人信息</string>
     <string name="btn_play_game">翻转游戏</string>
 
+    <!-- 菜单和对话框 -->
+    <string name="menu_about">关于</string>
+    <string name="about_message">翻牌游戏APP\n作者：龚柯予\n学号：2024110211\n版本：1.0\n本实验为作业五RecyclerView翻牌游戏</string>
+
     <!-- 信息修改界面 -->
     <string name="info_title">信息修改</string>
     <string name="hint_name">姓名</string>

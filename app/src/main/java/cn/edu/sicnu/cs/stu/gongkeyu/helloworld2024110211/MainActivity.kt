@@ -2,6 +2,9 @@ package cn.edu.sicnu.cs.stu.gongkeyu.helloworld2024110211
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import cn.edu.sicnu.cs.stu.gongkeyu.helloworld2024110211.databinding.ActivityMainBinding
 
@@ -16,12 +19,10 @@ class MainActivity : AppCompatActivity() {
 
         refreshInfo()
 
-        // 修改个人信息
         binding.btnEditInfo.setOnClickListener {
             startActivity(Intent(this, PersonalInfoActivity::class.java))
         }
 
-        // 进入翻牌游戏
         binding.btnPlayGame.setOnClickListener {
             startActivity(Intent(this, CardGameActivity::class.java))
         }
@@ -29,7 +30,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        // 从信息修改页返回后刷新显示
         refreshInfo()
     }
 
@@ -40,5 +40,31 @@ class MainActivity : AppCompatActivity() {
         binding.tvEmail.text = getString(R.string.label_email) + Player.email
         binding.tvHobby.text = getString(R.string.label_hobby) + Player.hobbies
         binding.tvHighscore.text = getString(R.string.label_highscore) + Player.highScore
+    }
+
+    // 加载菜单
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main, menu)
+        return true
+    }
+
+    // 菜单点击事件
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_about -> {
+                showAboutDialog()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    // 关于对话框
+    private fun showAboutDialog() {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.menu_about)
+            .setMessage(R.string.about_message)
+            .setPositiveButton(android.R.string.ok, null)
+            .show()
     }
 }
