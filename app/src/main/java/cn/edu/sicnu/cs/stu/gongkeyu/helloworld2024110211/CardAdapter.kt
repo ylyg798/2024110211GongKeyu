@@ -2,17 +2,21 @@ package cn.edu.sicnu.cs.stu.gongkeyu.helloworld2024110211
 
 import android.graphics.Color
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
 
-class CardAdapter(
-    private val cards: List<Card>,
-    private val onCardClick: (Int) -> Unit
-) : RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
+// 从RecyclerView.Adapter派生，直接持有CardMatchingGame模型
+class CardAdapter(private val game: CardMatchingGame) :
+    RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
+
+    private var onCardClickListener: ((Int) -> Unit)? = null
 
     class CardViewHolder(val button: Button) : RecyclerView.ViewHolder(button)
+
+    fun setOnCardClickListener(listener: (Int) -> Unit) {
+        onCardClickListener = listener
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
         val button = LayoutInflater.from(parent.context)
@@ -21,7 +25,7 @@ class CardAdapter(
     }
 
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
-        val card = cards[position]
+        val card = game.cardAtIndex(position)
         val button = holder.button
 
         when {
@@ -33,15 +37,17 @@ class CardAdapter(
             card.isChosen -> {
                 button.text = card.toString()
                 button.setBackgroundColor(Color.WHITE)
+                button.isEnabled = true
             }
             else -> {
                 button.text = ""
                 button.setBackgroundResource(R.drawable.card_back)
+                button.isEnabled = true
             }
         }
 
-        button.setOnClickListener { onCardClick(position) }
+        button.setOnClickListener { onCardClickListener?.invoke(position) }
     }
 
-    override fun getItemCount(): Int = cards.size
+    override fun getItemCount(): Int = game.cardCount
 }

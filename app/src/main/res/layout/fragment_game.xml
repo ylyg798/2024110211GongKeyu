@@ -5,27 +5,24 @@
     android:orientation="vertical"
     android:padding="8dp">
 
-    <!-- 标题 -->
     <TextView
+        android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="8dp"
-        android:text="@string/game_title"
         android:textSize="18sp"
         android:textStyle="bold" />
 
-    <!-- RecyclerView代替GridLayout -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_cards"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:padding="4dp"
-        android:scrollbars="vertical"
-        android:scrollbarFadeDuration="0" />
+        android:scrollbarFadeDuration="0"
+        android:scrollbars="vertical" />
 
-    <!-- 底部：分数 + 按钮 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,16 +39,9 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/btn_restart"
+            android:id="@+id/btn_reset"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:text="@string/btn_restart" />
-
-        <Button
-            android:id="@+id/btn_exit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/btn_exit" />
+            android:text="@string/btn_reset" />
     </LinearLayout>
 </LinearLayout>

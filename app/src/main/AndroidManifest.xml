@@ -22,13 +22,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".PersonalInfoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".CardGameActivity"
-            android:exported="false"
-            android:configChanges="orientation|screenSize" />
     </application>
 
 </manifest>

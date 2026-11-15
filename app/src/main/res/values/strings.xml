@@ -1,23 +1,17 @@
 <resources>
     <string name="app_name">龚柯予2024110211</string>
 
-    <!-- 主界面 -->
-    <string name="main_title">姓名+学号</string>
-    <string name="label_name">姓名：</string>
-    <string name="label_gender">性别：</string>
-    <string name="label_phone">电话：</string>
-    <string name="label_email">邮件地址：</string>
-    <string name="label_hobby">爱好：</string>
-    <string name="label_highscore">游戏最高分：</string>
-    <string name="btn_edit_info">修改个人信息</string>
-    <string name="btn_play_game">翻转游戏</string>
+    <!-- 底部导航 -->
+    <string name="nav_personal">个人信息</string>
+    <string name="nav_two">2张牌</string>
+    <string name="nav_three">3张牌</string>
 
     <!-- 菜单和对话框 -->
     <string name="menu_about">关于</string>
-    <string name="about_message">翻牌游戏APP\n作者：龚柯予\n学号：2024110211\n版本：1.0\n本实验为作业五RecyclerView翻牌游戏</string>
+    <string name="about_message">多Fragment翻牌游戏\n作者：龚柯予\n学号：2024110211\n版本：1.0\n本实验为作业六多Fragment应用</string>
 
-    <!-- 信息修改界面 -->
-    <string name="info_title">信息修改</string>
+    <!-- 个人信息Fragment -->
+    <string name="personal_title">个人信息</string>
     <string name="hint_name">姓名</string>
     <string name="hint_student_id">学号</string>
     <string name="hint_phone">电话号码</string>
@@ -29,12 +23,22 @@
     <string name="hobby_game">游戏</string>
     <string name="hobby_shopping">购物</string>
     <string name="btn_save">保存</string>
-    <string name="btn_back">返回</string>
-
-    <!-- 翻牌游戏界面 -->
-    <string name="game_title">翻牌游戏</string>
-    <string name="score_label">分数: %1$d</string>
-    <string name="btn_restart">重新开始</string>
-    <string name="btn_exit">退出</string>
     <string name="save_success">信息已保存</string>
+
+    <string name="btn_edit_info">修改个人信息</string>
+    <string name="btn_play_game">玩翻牌游戏</string>
+    <string name="empty_value">未填写</string>
+    <string name="field_name">姓名：%1$s</string>
+    <string name="field_student_id">学号：%1$s</string>
+    <string name="field_phone">电话：%1$s</string>
+    <string name="field_email">邮箱：%1$s</string>
+    <string name="field_gender">性别：%1$s</string>
+    <string name="field_hobby">爱好：%1$s</string>
+    <string name="hobby_separator">、</string>
+
+    <!-- 游戏Fragment -->
+    <string name="game_two_title">2张牌翻牌游戏</string>
+    <string name="game_three_title">3张牌翻牌游戏</string>
+    <string name="score_label">分数: %1$d</string>
+    <string name="btn_reset">重新开始</string>
 </resources>

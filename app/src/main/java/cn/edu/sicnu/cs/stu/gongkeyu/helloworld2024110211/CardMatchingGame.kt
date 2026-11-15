@@ -1,84 +1,81 @@
 package cn.edu.sicnu.cs.stu.gongkeyu.helloworld2024110211
 
-class CardMatchingGame(count: Int) {
+import java.io.Serializable
+
+// cardsPerMatch：2表示两张牌一局，3表示三张牌一局
+class CardMatchingGame(val count: Int, val cardsPerMatch: Int = 2) : Serializable {
+
     var score = 0
         private set
 
-    private var cards: MutableList<Card>
-    private var cardCount = count
+    private val cards: MutableList<Card> = mutableListOf()
+
+    private val MISMATCH_PENALTY = 2
+    private val MATCH_BONUS = 4
+    private val COST_TO_CHOOSE = 1
 
     init {
-        cards = mutableListOf()
         reset()
     }
 
-    // 重新开始一局：重新发牌，分数归零
+    // 重新发牌，分数归零
     fun reset() {
         score = 0
         cards.clear()
         val deck = Deck()
-        for (i in 1..cardCount) {
-            val card: Card? = deck.drawRandomCard()
-            if (card != null) {
-                cards.add(card)
-            }
+        while (cards.size < count) {
+            val card = deck.drawRandomCard() ?: break
+            cards.add(card)
         }
     }
+
+    val cardCount: Int
+        get() = cards.size
 
     fun cardAtIndex(index: Int): Card {
-        return cards.get(index)
+        return cards[index]
     }
 
-    val MISMATCH_PENALTY = 2
-    val MATCH_BONUS = 4
-    val COST_TO_CHOOSE = 1
-
-    // 3张牌匹配逻辑：翻第3张时和前两张判断
     fun chooseCardAtIndex(index: Int) {
         val card = cardAtIndex(index)
-        if (!card.isMatched) {
-            if (card.isChosen) {
-                card.isChosen = false
-                return
-            }
+        if (card.isMatched) return
+        if (card.isChosen) {
+            card.isChosen = false
+            return
+        }
 
-            // 统计当前已翻开但未匹配的牌
-            var chosenCount = 0
-            val chosenCards = mutableListOf<Card>()
-            for (otherCard in cards) {
-                if (otherCard.isChosen && !otherCard.isMatched) {
-                    chosenCount++
-                    chosenCards.add(otherCard)
-                }
-            }
-
-            when (chosenCount) {
-                0 -> {
-                    // 第一张：翻开
-                    score -= COST_TO_CHOOSE
-                    card.isChosen = true
-                }
-                1 -> {
-                    // 第二张：只翻开，不判断
-                    score -= COST_TO_CHOOSE
-                    card.isChosen = true
-                }
-                2 -> {
-                    // 第三张：和前两张一起判断
-                    val matchScore = card.match(chosenCards.toTypedArray())
-                    if (matchScore > 0) {
-                        score += matchScore * MATCH_BONUS
-                        card.isMatched = true
-                        chosenCards[0].isMatched = true
-                        chosenCards[1].isMatched = true
-                    } else {
-                        score -= MISMATCH_PENALTY
-                        chosenCards[0].isChosen = false
-                        chosenCards[1].isChosen = false
-                        card.isChosen = true
-                    }
-                }
+        // 统计当前已翻开且未匹配的牌
+        val chosenCards = mutableListOf<Card>()
+        for (other in cards) {
+            if (other.isChosen && !other.isMatched) {
+                chosenCards.add(other)
             }
         }
+
+        if (chosenCards.size < cardsPerMatch - 1) {
+            // 还没翻够，先记一次翻牌代价
+            score -= COST_TO_CHOOSE
+            card.isChosen = true
+        } else {
+            // 翻够牌数，开始判断匹配
+            val matchScore = card.match(chosenCards.toTypedArray())
+            if (matchScore > 0) {
+                score += matchScore * MATCH_BONUS
+                card.isMatched = true
+                for (chosen in chosenCards) {
+                    chosen.isMatched = true
+                }
+            } else {
+                score -= MISMATCH_PENALTY
+                for (chosen in chosenCards) {
+                    chosen.isChosen = false
+                }
+                card.isChosen = true
+            }
+        }
+    }
+
+    companion object {
+        private const val serialVersionUID = 2L
     }
 }

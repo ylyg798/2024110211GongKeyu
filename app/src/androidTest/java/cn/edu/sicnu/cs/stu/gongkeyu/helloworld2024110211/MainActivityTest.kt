@@ -17,16 +17,16 @@ class MainActivityTest {
     val activityRule = ActivityScenarioRule(MainActivity::class.java)
 
     @Test
-    fun allButtonsDisplayed() {
-        // 两个按钮都要显示
-        onView(withId(R.id.btn_edit_info)).check(matches(isDisplayed()))
-        onView(withId(R.id.btn_play_game)).check(matches(isDisplayed()))
+    fun bottomNavDisplayed() {
+        // 底部导航要显示
+        onView(withId(R.id.bottom_nav)).check(matches(isDisplayed()))
     }
 
     @Test
-    fun playerInfoDisplayed() {
-        // 玩家信息TextView要显示
-        onView(withId(R.id.tv_name)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_highscore)).check(matches(isDisplayed()))
+    fun personalInfoFragmentDisplayed() {
+        // 启动后默认显示个人信息Fragment的“首页”形态：两个按钮可见
+        onView(withId(R.id.btn_edit)).check(matches(isDisplayed()))
+        onView(withId(R.id.btn_play)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_show_name)).check(matches(isDisplayed()))
     }
 }

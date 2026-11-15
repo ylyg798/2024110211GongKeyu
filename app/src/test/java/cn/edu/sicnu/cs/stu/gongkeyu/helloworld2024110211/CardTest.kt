@@ -31,4 +31,22 @@ class CardTest {
         val a = Card("♠", "10")
         assertEquals("♠10", a.toString())
     }
+
+    @Test
+    fun matchThreeSameSuit_returns3() {
+        // 3张牌模式：三张同花色即匹配，不看点数
+        val a = Card("♥", "A")
+        val b = Card("♥", "K")
+        val c = Card("♥", "2")
+        assertEquals(3, a.match(arrayOf(b, c)))
+    }
+
+    @Test
+    fun matchThreeSameRankOnly_returns0() {
+        // 3张牌模式：只有点数相同、花色不同，不算匹配
+        val a = Card("♥", "A")
+        val b = Card("♦", "A")
+        val c = Card("♠", "A")
+        assertEquals(0, a.match(arrayOf(b, c)))
+    }
 }
