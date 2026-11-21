@@ -2,4 +2,6 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <!-- 列表里正在播放那一首的高亮底色 -->
+    <color name="music_item_selected">#FFF4E7C3</color>
 </resources>
